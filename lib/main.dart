@@ -1,4 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:myfirstflutterproject/example3/prograssbartest.dart';
+import 'package:myfirstflutterproject/example8/gesturetest.dart';
+import 'package:myfirstflutterproject/modifycounter.dart';
+import 'example2/counter.dart';
+import 'example2/route.dart';
+import 'example3/imagetest.dart';
+import 'example4/linearlayouttest.dart';
+import 'example4/flexlayouttest.dart';
+import 'example5/decoratedboxtest.dart';
+import 'example5/transformtest.dart';
+import 'example6/scollviewtest.dart';
+import 'example6/listviewtest.dart';
+import 'example7/willpopscope.dart';
+import 'example7/dialogtest.dart';
+import 'example8/gesturetest.dart';
+import 'example8/gesturerecognizer.dart';
+import 'example9/interweaveanimation.dart';
+import 'example9/switchanimation.dart';
+//import 'example11/iotest.dart';
+import 'example11/baiduclient.dart';
+import 'firstpage.dart';
+import 'test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +35,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        "counter_page":(context) => Counter(title: "counter"),
+        "route_page":(context) => TestRouter(title: "router"),
+        "image_page":(context) => TestImage(title: "image"),
+        "prograss_page":(context) => TestPrograssBar(title: "prograss"),
+        "linelayout_page":(context) => TestLineLayout(title: "TestLineLayout"),
+        "flexlayout_page":(context) => TestFlexLayout(title: "TestFlexLayout"),
+        "decbox_page":(context) => TestDecBox(title: "TestDecratedBox"),
+        "transform_page":(context) => TestTransform(title: "Transform"),
+        "scollview_page":(context) => TestScollView(title: "ScollView"),
+        "listview_page":(context) => TestListView(title: "ListView"),
+        "willpopscope_page":(context) => WillPopScopeTest(title: "WillPopScopeTest"),
+        "dialog_page":(context) => TestDialog(title: "DiglogTest"),
+        "gesture_page":(context) => TestGesture(title: "GestureTest"),
+        "gesture_page2":(context) => TestGestureRecongizer(title: "GestureTest2"),
+        "StaggerAnimation_page":(context) => StaggerRoute(),
+        "SwitchAnimation_page":(context) => AnimatedSwitcherCounterRoute(),
+        "baidu_page":(context) => HttpTestRoute(),
+        "final_page":(context) => ModifyCounter(title: "计数器（改）"),
+        // "first_page":(context) => FirstPage(title: "首页"),
+        // "test_page":(context) => TestPage(title: "测试页"),
+        "/":(context) => MyHomePage(title: 'Flutter Demo Home Page'), //注册首页路由
+      },
+
     );
   }
 }
@@ -40,18 +84,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,21 +119,74 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "counter_page");
+            }, child: Text("CounterTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "route_page");
+            }, child: Text("RouteTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "image_page");
+            }, child: Text("ImageTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "prograss_page");
+            }, child: Text("PrograssTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "linelayout_page");
+            }, child: Text("LineLayoutTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "flexlayout_page");
+            }, child: Text("FlexLayoutTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "decbox_page");
+            }, child: Text("DecoratedBoxTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "transform_page");
+            }, child: Text("TransformTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "scollview_page");
+            }, child: Text("ScollViewTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "listview_page");
+            }, child: Text("ListViewTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "willpopscope_page");
+            }, child: Text("WillPopScopTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "dialog_page");
+            }, child: Text("DialogTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "gesture_page");
+            }, child: Text("GestureTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "gesture_page2");
+            }, child: Text("GestureTest2")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "StaggerAnimation_page");
+            }, child: Text("StaggerAnimation")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "SwitchAnimation_page");
+            }, child: Text("SwitchAnimationTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "baidu_page");
+            }, child: Text("BaiduTest")),
+            TextButton(onPressed: (){
+              Navigator.pushNamed(context, "final_page");
+            }, child: Text("计数器（改）")),
+            // TextButton(onPressed: (){
+            //   Navigator.pushNamed(context, "first_page");
+            // }, child: Text("首页")),
+            // TextButton(onPressed: (){
+            //   Navigator.pushNamed(context, "test_page");
+            // }, child: Text("测试页")),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods. */
     );
   }
 }
